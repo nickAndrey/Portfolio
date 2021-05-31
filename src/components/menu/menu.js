@@ -13,10 +13,19 @@ const Nav = styled.nav`
   .menu-item-list {
     display: grid;
     align-content: center;
-    justify-items: end;
     grid-gap: 12px 0;
     &__container {
       display: grid;
+    }
+
+    &__container:nth-child(2) {
+      margin-top: 100px;
+      header {
+        font-size: 1.5em;
+        color: #fff;
+        opacity: 0.5;
+        margin-bottom: 5px;
+      }
     }
   }
 `;
@@ -33,6 +42,17 @@ const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.95);
 `;
 
+const ListSocialLinks = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+
+  li {
+    margin-right: 10px;
+  }
+`;
+
 export default function Menu({ fullName }) {
   const [isOpen, onOpen] = useState(false);
   const [links, setLinks] = useState([
@@ -42,13 +62,39 @@ export default function Menu({ fullName }) {
     { id: "3", anchor: "#projects", title: "Works", hover: false },
     { id: "4", anchor: "#contact", title: "Get in touch", hover: false },
   ]);
+  const [socialLinks, setSocialLinks] = useState([
+    {
+      id: "0",
+      anchor: "https://www.linkedin.com/in/andrew-husiev-611b06b5/",
+      title: "Linkedin",
+      icon: "FaLinkedin",
+      iconSize: "2em",
+      hover: false,
+    },
+    {
+      id: "1",
+      anchor: "https://www.facebook.com/nickandreyuser",
+      title: "Facebook",
+      icon: "FaFacebookSquare",
+      iconSize: "2em",
+      hover: false,
+    },
+    {
+      id: "2",
+      anchor: "https://github.com/nickAndrey",
+      title: "Github",
+      icon: "FaGithubSquare",
+      iconSize: "2em",
+      hover: false,
+    },
+  ]);
 
-  const setAllLinksAsNotActive = () => {
-    setLinks(links.map((link) => ({ ...link, hover: true })));
+  const setAllLinksAsNotActive = (hookCallback, itemsList) => {
+    hookCallback(itemsList.map((link) => ({ ...link, hover: true })));
   };
 
-  const setAllLinksAsActive = () => {
-    setLinks(links.map((link) => ({ ...link, hover: false })));
+  const setAllLinksAsActive = (hookCallback, itemsList) => {
+    hookCallback(itemsList.map((link) => ({ ...link, hover: false })));
   };
 
   return (
@@ -61,10 +107,10 @@ export default function Menu({ fullName }) {
           />
 
           <div className="menu-item-list">
-            <div
+            <section
               className="menu-item-list__container"
-              onMouseEnter={() => setAllLinksAsNotActive()}
-              onMouseLeave={() => setAllLinksAsActive()}
+              onMouseEnter={() => setAllLinksAsNotActive(setLinks, links)}
+              onMouseLeave={() => setAllLinksAsActive(setLinks, links)}
             >
               {links.map(({ id, anchor, title, hover }) => (
                 <MenuLinkItem
@@ -74,7 +120,33 @@ export default function Menu({ fullName }) {
                   isActive={hover}
                 />
               ))}
-            </div>
+            </section>
+
+            <section className="menu-item-list__container">
+              <header>Social</header>
+              <ListSocialLinks
+                onMouseEnter={() =>
+                  setAllLinksAsNotActive(setSocialLinks, socialLinks)
+                }
+                onMouseLeave={() =>
+                  setAllLinksAsActive(setSocialLinks, socialLinks)
+                }
+              >
+                {socialLinks.map(
+                  ({ id, anchor, title, icon, iconSize, hover }) => (
+                    <li key={id}>
+                      <MenuLinkItem
+                        anchor={anchor}
+                        title={title}
+                        isActive={hover}
+                        icon={icon}
+                        iconSize={iconSize}
+                      />
+                    </li>
+                  )
+                )}
+              </ListSocialLinks>
+            </section>
           </div>
 
           {/* 
