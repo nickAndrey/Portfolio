@@ -2,13 +2,20 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import ToggleMenuButton from "./toggle-menu-button";
 import MenuLinkItem from "./menu-link-item";
+import { device } from "../../breakpoints";
 
 const Nav = styled.nav`
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  padding-left: 150px;
+  @media ${device.mobileS} {
+    justify-content: center;
+  }
+  @media ${device.tablet} {
+    padding-left: 150px;
+    justify-content: start;
+  }
 
   .menu-item-list {
     display: grid;
@@ -16,6 +23,12 @@ const Nav = styled.nav`
     grid-gap: 12px 0;
     &__container {
       display: grid;
+      @media ${device.mobileL} {
+        text-align: center;
+      }
+      @media ${device.tablet} {
+        text-align: left;
+      }
     }
 
     &__container:nth-child(2) {
@@ -32,14 +45,19 @@ const Nav = styled.nav`
 
 const Overlay = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
   ${({ open }) => (open ? "width: 100%" : "width: 0")};
   height: 100%;
   z-index: 1;
   overflow-x: hidden;
   transition: 0.5s;
   background: rgba(0, 0, 0, 0.95);
+  top: 0;
+  @media ${device.mobileS} {
+    right: 0;
+  }
+  @media ${device.tablet} {
+    left: 0;
+  }
 `;
 
 const ListSocialLinks = styled.ul`
@@ -47,6 +65,12 @@ const ListSocialLinks = styled.ul`
   padding: 0;
   list-style-type: none;
   display: flex;
+  @media ${device.mobileL} {
+    justify-content: center;
+  }
+  @media ${device.tablet} {
+    justify-content: start;
+  }
 
   li {
     margin-right: 10px;

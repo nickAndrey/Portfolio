@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { device } from "../../breakpoints";
 
 const Icon = styled.svg`
   width: ${({ size }) => size};
@@ -13,9 +14,15 @@ const MenuButton = styled.button`
   border: none;
   background: none;
   position: fixed;
-  top: 50px;
-  left: 50px;
   z-index: 1;
+  @media ${device.mobileS} {
+    top: 25px;
+    right: 25px;
+  }
+  @media ${device.tablet} {
+    top: 50px;
+    left: 50px;
+  }
 
   .wrapper-menu {
     width: 50px;
