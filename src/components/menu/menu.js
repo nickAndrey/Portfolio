@@ -23,9 +23,6 @@ const Nav = styled.nav`
     grid-gap: 12px 0;
     &__container {
       display: grid;
-      @media ${device.mobileL} {
-        text-align: center;
-      }
       @media ${device.tablet} {
         text-align: left;
       }
@@ -65,9 +62,6 @@ const ListSocialLinks = styled.ul`
   padding: 0;
   list-style-type: none;
   display: flex;
-  @media ${device.mobileL} {
-    justify-content: center;
-  }
   @media ${device.tablet} {
     justify-content: start;
   }
