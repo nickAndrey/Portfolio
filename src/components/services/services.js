@@ -20,7 +20,7 @@ const ServiceRow = styled.div`
   }
 `;
 
-const ServiceHeader = styled.header`
+const Header = styled.header`
   text-align: center;
   @media ${device.mobileS} {
     margin-bottom: 50px;
@@ -30,7 +30,7 @@ const ServiceHeader = styled.header`
   }
 `;
 
-const ServiceTitle = styled.h2`
+const Title = styled.h2`
   margin: 0;
   @media ${device.mobileS} {
     font-size: 2em;
@@ -40,7 +40,7 @@ const ServiceTitle = styled.h2`
   }
 `;
 
-const ServiceSubTitle = styled.p`
+const SubTitle = styled.p`
   margin: 0 0 35px 0;
   text-align: center;
   @media ${device.mobileS} {
@@ -75,10 +75,10 @@ export default function Services() {
 
   return (
     <ServiceLayout>
-      <ServiceHeader>
-        <ServiceTitle>Technologies</ServiceTitle>
-        <ServiceSubTitle>I work with</ServiceSubTitle>
-      </ServiceHeader>
+      <Header>
+        <Title>Technologies</Title>
+        <SubTitle>I work with</SubTitle>
+      </Header>
       <ServiceRow>
         {containers.map((container) => (
           <ServiceContainer
