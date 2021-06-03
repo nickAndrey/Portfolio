@@ -6,6 +6,7 @@ const Anchor = styled.a`
   color: ${({ active }) => (active ? "rgba(255, 255, 255, 0.5)" : "#fff")};
   text-decoration: none;
   transition: color 0.3s;
+  cursor: pointer;
   &:hover {
     color: #fff;
   }
@@ -17,6 +18,7 @@ export default function MenuLinkItem({
   isActive,
   icon,
   iconSize,
+  scrollTo,
 }) {
   const setIcon = () => {
     switch (icon) {
@@ -31,8 +33,21 @@ export default function MenuLinkItem({
     }
   };
 
+  const scrollToPosition = (pos) => {
+    window.scrollTo({
+      top: pos,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <Anchor href={anchor} active={isActive} size={iconSize} target={icon && "_blank"}>
+    <Anchor
+      href={icon && anchor}
+      target={icon && "_blank"}
+      active={isActive}
+      size={iconSize}
+      onClick={() => scrollToPosition(scrollTo)}
+    >
       {icon ? setIcon() : title}
     </Anchor>
   );

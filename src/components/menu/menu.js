@@ -73,6 +73,17 @@ const ListSocialLinks = styled.ul`
 
 export default function Menu({ fullName }) {
   const [isOpen, onOpen] = useState(false);
+  const [sectionPositions, setSectionPositions] = useState([]);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+    setSectionPositions(
+      [...sections]
+        .filter((item) => item.id)
+        .map((section) => section.getBoundingClientRect().top)
+    );
+  }, []);
+
   const [links, setLinks] = useState([
     { id: "0", anchor: "#welcome", title: "Home", hover: false },
     { id: "1", anchor: "#about", title: "About", hover: false },
@@ -130,12 +141,13 @@ export default function Menu({ fullName }) {
               onMouseEnter={() => setAllLinksAsNotActive(setLinks, links)}
               onMouseLeave={() => setAllLinksAsActive(setLinks, links)}
             >
-              {links.map(({ id, anchor, title, hover }) => (
+              {links.map(({ id, anchor, title, hover }, idx) => (
                 <MenuLinkItem
                   key={id}
                   anchor={anchor}
                   title={title}
                   isActive={hover}
+                  scrollTo={sectionPositions[idx]}
                 />
               ))}
             </section>
@@ -166,10 +178,6 @@ export default function Menu({ fullName }) {
               </ListSocialLinks>
             </section>
           </div>
-
-          {/* 
-          <SocialLinks></SocialLinks>
-          <GetInTouch></GetInTouch> */}
         </Nav>
       </Overlay>
     </>

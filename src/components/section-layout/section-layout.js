@@ -48,7 +48,6 @@ export default function SectionLayout({ sectionName }) {
 
   return (
     <Section id={sectionName}>
-      <a name={sectionName} />
       {renderSection()}
     </Section>
   );
