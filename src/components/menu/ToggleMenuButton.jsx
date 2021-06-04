@@ -2,6 +2,48 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { device } from "../../breakpoints";
 
+export default function ToggleMenuButton({ onToggleMenu, activeState }) {
+  const [activeColor, setActiveColor] = useState("rgb(255, 255, 255)");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+
+    window.onscroll = () => {
+      const filtered = [...sections].filter((section) => {
+        const { top } = section.getBoundingClientRect();
+        if (top < 50) {
+          return section;
+        }
+      });
+      setActiveColor(
+        getComputedStyle(filtered[filtered.length - 1]).backgroundColor
+      );
+    };
+  }, []);
+
+  const getActiveColor = () => {
+    if (activeState) {
+      return "#fff";
+    } else {
+      if (activeColor === "rgb(255, 255, 255)") {
+        return "#000";
+      } else {
+        return "#fff";
+      }
+    }
+  };
+
+  return (
+    <MenuButton onClick={onToggleMenu} color={getActiveColor()}>
+      <div className={activeState ? "wrapper-menu open" : "wrapper-menu"}>
+        <div className="line-menu half start"></div>
+        <div className="line-menu"></div>
+        <div className="line-menu half end"></div>
+      </div>
+    </MenuButton>
+  );
+}
+
 const Icon = styled.svg`
   width: ${({ size }) => size};
   height: ${({ size }) => size};
@@ -69,45 +111,3 @@ const MenuButton = styled.button`
     transform: rotate(-90deg) translateX(-3px);
   }
 `;
-
-export default function ToggleMenuButton({ onToggleMenu, activeState }) {
-  const [activeColor, setActiveColor] = useState("rgb(255, 255, 255)");
-
-  useEffect(() => {
-    const sections = document.querySelectorAll("section");
-
-    window.onscroll = () => {
-      const filtered = [...sections].filter((section) => {
-        const { top } = section.getBoundingClientRect();
-        if (top < 50) {
-          return section;
-        }
-      });
-      setActiveColor(
-        getComputedStyle(filtered[filtered.length - 1]).backgroundColor
-      );
-    };
-  }, []);
-
-  const getActiveColor = () => {
-    if (activeState) {
-      return "#fff";
-    } else {
-      if (activeColor === "rgb(255, 255, 255)") {
-        return "#000";
-      } else {
-        return "#fff";
-      }
-    }
-  };
-
-  return (
-    <MenuButton onClick={onToggleMenu} color={getActiveColor()}>
-      <div className={activeState ? "wrapper-menu open" : "wrapper-menu"}>
-        <div className="line-menu half start"></div>
-        <div className="line-menu"></div>
-        <div className="line-menu half end"></div>
-      </div>
-    </MenuButton>
-  );
-}

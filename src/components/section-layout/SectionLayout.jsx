@@ -1,10 +1,30 @@
 import styled from "styled-components";
-
 import Welcome from "../welcome/Welcome";
 import About from "../about/About";
 import Services from "../services/Services";
 import Projects from "../projects/Projects";
 import Contact from "../contact/Contact";
+
+export default function SectionLayout({ sectionName }) {
+  const renderSection = () => {
+    switch (sectionName) {
+      case "welcome":
+        return <Welcome />;
+      case "about":
+        return <About />;
+      case "services":
+        return <Services />;
+      case "projects":
+        return <Projects />;
+      case "contact":
+        return <Contact />;
+      default:
+        return;
+    }
+  };
+
+  return <Section id={sectionName}>{renderSection()}</Section>;
+}
 
 const Section = styled.section`
   height: 100vh;
@@ -27,24 +47,3 @@ const Section = styled.section`
     background: #fff;
   }
 `;
-
-export default function SectionLayout({ sectionName }) {
-  const renderSection = () => {
-    switch (sectionName) {
-      case "welcome":
-        return <Welcome />;
-      case "about":
-        return <About />;
-      case "services":
-        return <Services />;
-      case "projects":
-        return <Projects />;
-      case "contact":
-        return <Contact />;
-      default:
-        return;
-    }
-  };
-
-  return <Section id={sectionName}>{renderSection()}</Section>;
-}

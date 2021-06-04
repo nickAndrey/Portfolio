@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import { device } from "../../breakpoints";
 
+export default function ServiceContainer({ title, content }) {
+  return (
+    <ServiceContainerLayout>
+      <h3>{title}</h3>
+      <p>{content}</p>
+    </ServiceContainerLayout>
+  );
+}
+
 const ServiceContainerLayout = styled.div`
   h3 {
     margin-bottom: 20px;
@@ -28,12 +37,3 @@ const ServiceContainerLayout = styled.div`
     }
   }
 `;
-
-export default function ServiceContainer({ title, content }) {
-  return (
-    <ServiceContainerLayout>
-      <h3>{title}</h3>
-      <p>{content}</p>
-    </ServiceContainerLayout>
-  );
-}

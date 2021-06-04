@@ -2,6 +2,47 @@ import styled from "styled-components";
 import ServiceContainer from "./ServiceContainer";
 import { device } from "../../breakpoints";
 
+export default function Services() {
+  const containers = [
+    {
+      id: "0",
+      title: "HTML & CSS RWD",
+      content:
+        "Enterprise-class websites need consistent colors, fonts, and design to match the organization's branding guidelines. Toptal’s front-end developers are experts at designing responsive websites, with CSS at the core of front end development alongside JavaScript and HTML.",
+    },
+    {
+      id: "1",
+      title: "React JS Development",
+      content:
+        "ReactJS is renowned for its extensibility, adjustability, and convenience. Toptal ReactJS developers create complex software for your business, including web browsers and mobile application user interfaces.",
+    },
+    {
+      id: "2",
+      title: "Angular Development",
+      content:
+        "Angular is an open-source front-end framework developed by Google for creating dynamic, modern web apps. First introduced in 2009, the framework has gained huge traction over the years for eliminating unnecessary code and ensuring lighter & faster apps.",
+    },
+  ];
+
+  return (
+    <ServiceLayout>
+      <Header>
+        <Title>Technologies</Title>
+        <SubTitle>I work with</SubTitle>
+      </Header>
+      <ServiceRow>
+        {containers.map((container) => (
+          <ServiceContainer
+            key={container.id}
+            title={container.title}
+            content={container.content}
+          />
+        ))}
+      </ServiceRow>
+    </ServiceLayout>
+  );
+}
+
 const ServiceLayout = styled.div`
   height: calc(100% - 100px * 2);
   padding: 100px 0;
@@ -50,44 +91,3 @@ const SubTitle = styled.p`
     font-size: 2em;
   }
 `;
-
-export default function Services() {
-  const containers = [
-    {
-      id: "0",
-      title: "HTML & CSS RWD",
-      content:
-        "Enterprise-class websites need consistent colors, fonts, and design to match the organization's branding guidelines. Toptal’s front-end developers are experts at designing responsive websites, with CSS at the core of front end development alongside JavaScript and HTML.",
-    },
-    {
-      id: "1",
-      title: "React JS Development",
-      content:
-        "ReactJS is renowned for its extensibility, adjustability, and convenience. Toptal ReactJS developers create complex software for your business, including web browsers and mobile application user interfaces.",
-    },
-    {
-      id: "2",
-      title: "Angular Development",
-      content:
-        "Angular is an open-source front-end framework developed by Google for creating dynamic, modern web apps. First introduced in 2009, the framework has gained huge traction over the years for eliminating unnecessary code and ensuring lighter & faster apps.",
-    },
-  ];
-
-  return (
-    <ServiceLayout>
-      <Header>
-        <Title>Technologies</Title>
-        <SubTitle>I work with</SubTitle>
-      </Header>
-      <ServiceRow>
-        {containers.map((container) => (
-          <ServiceContainer
-            key={container.id}
-            title={container.title}
-            content={container.content}
-          />
-        ))}
-      </ServiceRow>
-    </ServiceLayout>
-  );
-}

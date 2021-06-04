@@ -4,74 +4,7 @@ import ToggleMenuButton from "./ToggleMenuButton";
 import MenuLinkItem from "./MenuLinkItem";
 import { device } from "../../breakpoints";
 
-const Nav = styled.nav`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  @media ${device.mobileS} {
-    justify-content: center;
-  }
-  @media ${device.tablet} {
-    padding-left: 150px;
-    justify-content: start;
-  }
-
-  .menu-item-list {
-    display: grid;
-    align-content: center;
-    grid-gap: 12px 0;
-    &__container {
-      display: grid;
-      @media ${device.tablet} {
-        text-align: left;
-      }
-    }
-
-    &__container:nth-child(2) {
-      margin-top: 100px;
-      header {
-        font-size: 1.5em;
-        color: #fff;
-        opacity: 0.5;
-        margin-bottom: 5px;
-      }
-    }
-  }
-`;
-
-const Overlay = styled.div`
-  position: fixed;
-  ${({ open }) => (open ? "width: 100%" : "width: 0")};
-  height: 100%;
-  z-index: 1;
-  overflow-x: hidden;
-  transition: 0.5s;
-  background: rgba(0, 0, 0, 0.95);
-  top: 0;
-  @media ${device.mobileS} {
-    right: 0;
-  }
-  @media ${device.tablet} {
-    left: 0;
-  }
-`;
-
-const ListSocialLinks = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  @media ${device.tablet} {
-    justify-content: start;
-  }
-
-  li {
-    margin-right: 10px;
-  }
-`;
-
-export default function Menu({ fullName }) {
+export default function Menu() {
   const [isOpen, onOpen] = useState(false);
   const [sectionPositions, setSectionPositions] = useState([]);
 
@@ -91,6 +24,7 @@ export default function Menu({ fullName }) {
     { id: "3", anchor: "#projects", title: "Works", hover: false },
     { id: "4", anchor: "#contact", title: "Get in touch", hover: false },
   ]);
+
   const [socialLinks, setSocialLinks] = useState([
     {
       id: "0",
@@ -183,3 +117,70 @@ export default function Menu({ fullName }) {
     </>
   );
 }
+
+const Nav = styled.nav`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  @media ${device.mobileS} {
+    justify-content: center;
+  }
+  @media ${device.tablet} {
+    padding-left: 150px;
+    justify-content: start;
+  }
+
+  .menu-item-list {
+    display: grid;
+    align-content: center;
+    grid-gap: 12px 0;
+    &__container {
+      display: grid;
+      @media ${device.tablet} {
+        text-align: left;
+      }
+    }
+
+    &__container:nth-child(2) {
+      margin-top: 100px;
+      header {
+        font-size: 1.5em;
+        color: #fff;
+        opacity: 0.5;
+        margin-bottom: 5px;
+      }
+    }
+  }
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  ${({ open }) => (open ? "width: 100%" : "width: 0")};
+  height: 100%;
+  z-index: 1;
+  overflow-x: hidden;
+  transition: 0.5s;
+  background: rgba(0, 0, 0, 0.95);
+  top: 0;
+  @media ${device.mobileS} {
+    right: 0;
+  }
+  @media ${device.tablet} {
+    left: 0;
+  }
+`;
+
+const ListSocialLinks = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  @media ${device.tablet} {
+    justify-content: start;
+  }
+
+  li {
+    margin-right: 10px;
+  }
+`;

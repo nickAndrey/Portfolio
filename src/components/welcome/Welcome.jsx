@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import { device } from "../../breakpoints";
 
+export default function Welcome() {
+  return (
+    <Header>
+      <Title>Hi, I'm Andrew</Title>
+      <SubTitle>a web developer</SubTitle>
+    </Header>
+  );
+}
+
 const Header = styled.header`
   text-align: center;
 `;
@@ -25,12 +34,3 @@ const SubTitle = styled.p`
     font-size: 2em;
   }
 `;
-
-export default function Welcome() {
-  return (
-    <Header>
-      <Title>Hi, I'm Andrew</Title>
-      <SubTitle>a web developer</SubTitle>
-    </Header>
-  );
-}

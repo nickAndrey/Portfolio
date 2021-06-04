@@ -1,17 +1,6 @@
 import styled from "styled-components";
 import { FaLinkedin, FaFacebookSquare, FaGithubSquare } from "react-icons/fa";
 
-const Anchor = styled.a`
-  font-size: ${({ size }) => (size ? size : "3em")};
-  color: ${({ active }) => (active ? "rgba(255, 255, 255, 0.5)" : "#fff")};
-  text-decoration: none;
-  transition: color 0.3s;
-  cursor: pointer;
-  &:hover {
-    color: #fff;
-  }
-`;
-
 export default function MenuLinkItem({
   anchor,
   title,
@@ -52,3 +41,14 @@ export default function MenuLinkItem({
     </Anchor>
   );
 }
+
+const Anchor = styled.a`
+  font-size: ${({ size }) => (size ? size : "3em")};
+  color: ${({ active }) => (active ? "rgba(255, 255, 255, 0.5)" : "#fff")};
+  text-decoration: none;
+  transition: color 0.3s;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
+`;
