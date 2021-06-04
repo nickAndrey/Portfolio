@@ -19,20 +19,18 @@ export default function Menu() {
   }, []);
 
   return (
-    <>
-      <Overlay open={isOpen}>
-        <Nav>
-          <ToggleMenuButton
-            activeState={isOpen}
-            onToggleMenu={() => onOpen(!isOpen)}
-          />
-          <ListWrapper>
-            <MainListItems sectionPositions={sectionPositions} />
-            <SocialListItems />
-          </ListWrapper>
-        </Nav>
-      </Overlay>
-    </>
+    <Overlay open={isOpen}>
+      <Nav>
+        <ToggleMenuButton
+          activeState={isOpen}
+          onToggleMenu={() => onOpen(!isOpen)}
+        />
+        <ListWrapper>
+          <MainListItems sectionPositions={sectionPositions} />
+          <SocialListItems />
+        </ListWrapper>
+      </Nav>
+    </Overlay>
   );
 }
 
