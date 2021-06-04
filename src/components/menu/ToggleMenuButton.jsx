@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { device } from "../../breakpoints";
 
 export default function ToggleMenuButton({ onToggleMenu, activeState }) {
-  const [activeColor, setActiveColor] = useState("rgb(255, 255, 255)");
+  const [computedColor, setComputedColor] = useState("rgb(255, 255, 255)");
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");
@@ -11,21 +11,20 @@ export default function ToggleMenuButton({ onToggleMenu, activeState }) {
     window.onscroll = () => {
       const filtered = [...sections].filter((section) => {
         const { top } = section.getBoundingClientRect();
-        if (top < 50) {
-          return section;
-        }
+        if (top < 50) return section;
       });
-      setActiveColor(
+      
+      setComputedColor(
         getComputedStyle(filtered[filtered.length - 1]).backgroundColor
       );
     };
   }, []);
 
-  const getActiveColor = () => {
+  const setActiveColor = () => {
     if (activeState) {
       return "#fff";
     } else {
-      if (activeColor === "rgb(255, 255, 255)") {
+      if (computedColor === "rgb(255, 255, 255)") {
         return "#000";
       } else {
         return "#fff";
@@ -34,7 +33,7 @@ export default function ToggleMenuButton({ onToggleMenu, activeState }) {
   };
 
   return (
-    <MenuButton onClick={onToggleMenu} color={getActiveColor()}>
+    <MenuButton onClick={onToggleMenu} color={setActiveColor()}>
       <div className={activeState ? "wrapper-menu open" : "wrapper-menu"}>
         <div className="line-menu half start"></div>
         <div className="line-menu"></div>
