@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ServiceContainer from "./service-container";
+import ServiceContainer from "./ServiceContainer";
 import { device } from "../../breakpoints";
 
 const ServiceLayout = styled.div`

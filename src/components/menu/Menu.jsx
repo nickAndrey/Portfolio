@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import ToggleMenuButton from "./toggle-menu-button";
-import MenuLinkItem from "./menu-link-item";
+import ToggleMenuButton from "./ToggleMenuButton";
+import MenuLinkItem from "./MenuLinkItem";
 import { device } from "../../breakpoints";
 
 const Nav = styled.nav`

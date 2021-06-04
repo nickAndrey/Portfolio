@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import Welcome from "../welcome/welcome";
-import About from "../about/about";
-import Services from "../services/services";
-import Projects from "../projects/projects";
-import Contact from "../contact/contact";
+import Welcome from "../welcome/Welcome";
+import About from "../about/About";
+import Services from "../services/Services";
+import Projects from "../projects/Projects";
+import Contact from "../contact/Contact";
 
 const Section = styled.section`
   height: 100vh;
@@ -46,9 +46,5 @@ export default function SectionLayout({ sectionName }) {
     }
   };
 
-  return (
-    <Section id={sectionName}>
-      {renderSection()}
-    </Section>
-  );
+  return <Section id={sectionName}>{renderSection()}</Section>;
 }

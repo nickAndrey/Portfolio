@@ -1,5 +1,5 @@
-import SectionLayout from './components/section-layout/section-layout';
-import Menu from './components/menu/menu';
+import SectionLayout from './components/section-layout/SectionLayout';
+import Menu from './components/menu/Menu';
 
 function App() {
   return (
