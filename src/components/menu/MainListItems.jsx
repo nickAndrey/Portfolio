@@ -12,15 +12,14 @@ export default function MainListItems({ sectionPositions }) {
     { id: "4", anchor: "#contact", title: "Get in touch", hover: false },
   ]);
 
+  const onSetLinksActive = (isHovered = false) => {
+    return setLinks(links.map((link) => ({ ...link, hover: isHovered })));
+  };
+
   return (
     <ListContainer
-      className="menu-item-list__container"
-      onMouseEnter={() =>
-        setLinks(links.map((link) => ({ ...link, hover: true })))
-      }
-      onMouseLeave={() =>
-        setLinks(links.map((link) => ({ ...link, hover: false })))
-      }
+      onMouseEnter={() => onSetLinksActive(true)}
+      onMouseLeave={() => onSetLinksActive(false)}
     >
       {links.map(({ id, anchor, title, hover }, idx) => (
         <MenuLinkItem

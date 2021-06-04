@@ -31,16 +31,18 @@ export default function SocialListItems() {
     },
   ]);
 
+  const onSetSocialLinksActive = (isHovered = false) => {
+    return setSocialLinks(
+      socialLinks.map((link) => ({ ...link, hover: isHovered }))
+    );
+  };
+
   return (
     <ListContainer>
       <header>Social</header>
       <ListSocialLinks
-        onMouseEnter={() =>
-          setSocialLinks(socialLinks.map((link) => ({ ...link, hover: true })))
-        }
-        onMouseLeave={() =>
-          setSocialLinks(socialLinks.map((link) => ({ ...link, hover: false })))
-        }
+        onMouseEnter={() => onSetSocialLinksActive(true)}
+        onMouseLeave={() => onSetSocialLinksActive(false)}
       >
         {socialLinks.map(({ id, anchor, title, icon, iconSize, hover }) => (
           <li key={id}>
